@@ -8,7 +8,7 @@ View(cses)
 
 foo<- cses %>% select(IMD1003, IMD3006,IMD3010,IMD3011,IMD3012,IMD3013_1,IMD3013_2,IMD3013_3,IMD3014,IMD3014,IMD5000_A,IMD5000_B,IMD5000_C,IMD5000_D,IMD5000_E,IMD5000_F,IMD5000_G,IMD5000_H,IMD5000_I,IMD5011_A,IMD5011_B,
 IMD5011_C,IMD5011_D,IMD5011_E,IMD5011_F,IMD5011_G,IMD5011_H,IMD5011_I,IMD5012_A,IMD5012_B,IMD5012_C,IMD5012_D,IMD5012_E,IMD5012_F,IMD5012_G,IMD5012_H,IMD5012_I,IMD5049,IMD1004,IMD1006,IMD1006_UN,IMD1006_NAM,IMD1008_YEAR,IMD2001_1,IMD2002,IMD2003,IMD2006,IMD3001_UH,
-IMD1008_YEAR,IMD1008_MOD_1,IMD1008_MOD_4)
+IMD1008_YEAR,IMD1008_MOD_1,IMD1008_MOD_4,IMD3002_OUTGOV)
 
 summary(foo)
 
@@ -32,7 +32,7 @@ partyname_B=IMD5000_B,partyname_C=IMD5000_C,partyname_D=IMD5000_D,partyname_E=IM
 partyname_H=IMD5000_H,partyname_I=IMD5000_I,party_leftright_A=IMD5011_A,party_leftright_B=IMD5011_B,party_leftright_C=IMD5011_C,
 party_leftright_D=IMD5011_D,party_leftright_E=IMD5011_E	,party_leftright_F=IMD5011_F,party_leftright_G=IMD5011_G,party_leftright_H=IMD5011_H,party_leftright_I= IMD5011_I	,
 study_year=IMD1004, polity_code=IMD1006_UN ,polity_name=IMD1006_NAM, election_year=IMD1008_YEAR, age=IMD2001_1, gender=IMD2002, education=IMD2003, income=IMD2006,
-MODULE_1=IMD1008_MOD_1, MODULE_4=IMD1008_MOD_4,Polity_number=IMD1003) 	
+MODULE_1=IMD1008_MOD_1, MODULE_4=IMD1008_MOD_4,Polity_number=IMD1003,incumbent=IMD3002_OUTGOV) 	
 View(foo2)
 
 cses1_4<-foo2
@@ -44,21 +44,35 @@ foo2<-NULL
 cses5<- read_stata("Documents/GitHub/Economic_Voting/cses5.dta")
 summary(cses5)
 
-foo<- cses5 %>% select(E3020,E3023,E3016_1,E3016_2,E3011,E3009,E5201_A,E5201_B,E5201_C,E5201_D,E5201_E,E5201_F,E5201_G,E5201_H,E5201_I,E3019_A,E3019_B,E3019_C,E3019_D,E3019_E,E3019_F,E3019_G,E3019_H,E3019_I,E1004,E1006_UN,E1006_NAM,E1008,E2001_Y ,E2002,E2003,E2011,E1003,E1008)
+foo<- cses5 %>% select(E3020,E3023,E3016_1,E3016_2,E3011,E3009,E5201_A,E5201_B,E5201_C,E5201_D,E5201_E,E5201_F,E5201_G,E5201_H,E5201_I,E3019_A,E3019_B,E3019_C,E3019_D,E3019_E,E3019_F,E3019_G,E3019_H,E3019_I,E1004,E1006_UN,E1006_NAM,E1008,E2001_Y ,E2002,E2003,E2011,E1003,E1008,E3013_OUTGOV)
 
 ## Subset to exclude non-European countries
 
 foo2<-foo %>% filter(E1003==04002017| E1003==25002017|E1003==27602017| E1003==30002015|E1003==34802018|E1003==35202016|E1003==35202017| E1003==37202016|E1003==38002018|E1003==44002016|E1003==49902016|E1003==57802017)
-summary(foo2)                          
+summary(foo2)  
+
+## Generate age (study year- E2001_Y) variable
+
+table(foo2$E2001_Y)
+table(foo2$E1004)
+
+foo2$E2001_Y[foo2$E2001_Y==9999] <- NA
+table(foo2$E2001_Y)
+
+foo2 %>% 
+mutate(age = (E1008-E2001_Y))
+
+#rename variables 
 
 foo2<- select(foo2, leftright=E3020, satdem=E3023, makediff=E3016_1,
 votediff=E3016_2, socio_retro=E3011,govperform=E3009,partyname_A=E5201_A,
 partyname_B=E5201_B,partyname_C=E5201_C,partyname_D=E5201_D,partyname_E=E5201_E, partyname_F=E5201_F,partyname_G=E5201_G,
 partyname_H=E5201_H,partyname_I=E5201_I,party_leftright_A=E3019_A,party_leftright_B=E3019_B,party_leftright_C=E3019_C,
 party_leftright_D=E3019_D,party_leftright_E=E3019_E	,party_leftright_F=E3019_F,party_leftright_G=E3019_G,party_leftright_H=E3019_H,party_leftright_I= E3019_I	,
-study_year=E1004, polity_code=E1006_UN ,polity_name=E1006_NAM, election_year=E1008, age=E2001_Y, gender=E2002, education=E2003, income=E2011,
-MODULE_5=E1008,Polity_number=E1003) 	
+study_year=E1004, polity_code=E1006_UN ,polity_name=E1006_NAM, election_year=E1008, gender=E2002, education=E2003, income=E2011,
+MODULE_5=E1008,Polity_number=E1003,incumbent=E3013_OUTGOV) 	
 View(foo2)
+
 
 cses5<- foo2
 View(cses5)
@@ -66,9 +80,10 @@ foo2<-NULL
 
 ## merge the two datasets 
 
-total <- merge(cses1_4,cses5,all = TRUE)
-View(total)
+cses1_5 <- merge(cses1_4,cses5,all = TRUE)
+View(cses1_5)
 
+total<-NULL
 
 
 
