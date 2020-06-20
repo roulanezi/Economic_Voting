@@ -1,6 +1,7 @@
 library(sjlabelled)
 library(tidyverse)
 library(dplyr)
+setwd("~/Documents/GitHub/Economic_Voting")
 cses<- read.csv("Documents/GitHub/Economic_Voting/cses_imd.csv")
 View(cses)
 
@@ -85,6 +86,7 @@ View(cses1_5)
 
 total<-NULL
 
+save(cses1_5,file="cses1_5.RData")
 
 
 
