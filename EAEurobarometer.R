@@ -98,7 +98,7 @@ dataset1$vote_Moldova<-replace(dataset1$vote_Moldova, is.na(dataset1$vote_Moldov
 
 
 dataset1$vote_int = (dataset1$vote_Albania+dataset1$vote_Armenia+dataset1$vote_Belarus+dataset1$vote_Bulgaria+dataset1$vote_Croatia+dataset1$vote_Czech+dataset1$vote_Slovakia+dataset1$vote_Estonia+dataset1$vote_Hungary+dataset1$vote_Latvia+dataset1$vote_Lithuania+dataset1$vote_Macedonia+dataset1$vote_Poland+dataset1$vote_Romania+dataset1$vote_Russia+dataset1$vote_Slovenia+dataset1$vote_Ukraine+dataset1$vote_Georgia+dataset1$vote_Kazachstan+dataset1$vote_Yugoslavia+dataset1$vote_GDR+dataset1$vote_Moldova) 
-
+table(dataset1$vote_int)
 # Test by country
 table(dataset1$country,dataset1$vote_int)
 View(dataset1)
@@ -138,4 +138,126 @@ table(dataset1$country,dataset1$vote_int)
 save(dataset1, file="EAEurobarometer.RData")
 
 
+# mutating vote incl variables
+
+dataset1<-dataset1 %>% mutate(voteinc_Albania=V101)
+dataset1<-dataset1 %>% mutate(voteinc_Belarus=V102)
+dataset1<-dataset1 %>% mutate(voteinc_Bulgaria=V103)
+dataset1<-dataset1 %>% mutate(voteinc_Czech=V104)
+dataset1<-dataset1 %>% mutate(voteinc_Slovakia=V105)
+dataset1<-dataset1 %>% mutate(voteinc_Estonia=V106)
+dataset1<-dataset1 %>% mutate(voteinc_Hungary=V107)
+dataset1<-dataset1 %>% mutate(voteinc_Latvia=V108)
+dataset1<-dataset1 %>% mutate(voteinc_Lithuania=V109)
+dataset1<-dataset1 %>% mutate(voteinc_Macedonia=V110)
+dataset1<-dataset1 %>% mutate(voteinc_Poland=V111)
+dataset1<-dataset1 %>% mutate(voteinc_Romania=V112)
+dataset1<-dataset1 %>% mutate(voteinc_Russia=V113)
+dataset1<-dataset1 %>% mutate(voteinc_Slovenia=V114)
+dataset1<-dataset1 %>% mutate(voteinc_Ukraine=V115)
+dataset1<-dataset1 %>% mutate(voteinc_Georgia=V116)
+dataset1<-dataset1 %>% mutate(voteinc_Moldova=V117)
+
+
+# Replace NAs to 0s
+
+dataset1$voteinc_Albania<-replace(dataset1$voteinc_Albania, is.na(dataset1$voteinc_Albania), 0)
+dataset1$voteinc_Belarus<-replace(dataset1$voteinc_Belarus, is.na(dataset1$voteinc_Belarus), 0)
+dataset1$voteinc_Bulgaria<-replace(dataset1$voteinc_Bulgaria, is.na(dataset1$voteinc_Bulgaria), 0)
+dataset1$voteinc_Czech<-replace(dataset1$voteinc_Czech, is.na(dataset1$voteinc_Czech), 0)
+dataset1$voteinc_Slovakia<-replace(dataset1$voteinc_Slovakia, is.na(dataset1$voteinc_Slovakia), 0)
+dataset1$voteinc_Estonia<-replace(dataset1$voteinc_Estonia, is.na(dataset1$voteinc_Estonia), 0)
+dataset1$voteinc_Hungary<-replace(dataset1$voteinc_Hungary, is.na(dataset1$voteinc_Hungary), 0)
+dataset1$voteinc_Latvia<-replace(dataset1$voteinc_Latvia, is.na(dataset1$voteinc_Latvia), 0)
+dataset1$voteinc_Lithuania<-replace(dataset1$voteinc_Lithuania, is.na(dataset1$voteinc_Lithuania), 0)
+dataset1$voteinc_Macedonia<-replace(dataset1$voteinc_Macedonia, is.na(dataset1$voteinc_Macedonia), 0)
+dataset1$voteinc_Poland<-replace(dataset1$voteinc_Poland, is.na(dataset1$voteinc_Poland), 0)
+dataset1$voteinc_Romania<-replace(dataset1$voteinc_Romania, is.na(dataset1$voteinc_Romania), 0)
+dataset1$voteinc_Russia<-replace(dataset1$voteinc_Russia, is.na(dataset1$voteinc_Russia), 0)
+dataset1$voteinc_Slovenia<-replace(dataset1$voteinc_Slovenia, is.na(dataset1$voteinc_Slovenia), 0)
+dataset1$voteinc_Ukraine<-replace(dataset1$voteinc_Ukraine, is.na(dataset1$voteinc_Ukraine), 0)
+dataset1$voteinc_Georgia<-replace(dataset1$voteinc_Georgia, is.na(dataset1$voteinc_Georgia), 0)
+dataset1$voteinc_Moldova<-replace(dataset1$voteinc_Moldova, is.na(dataset1$voteinc_Moldova), 0)
+
+table(dataset1$country,dataset1$voteinc_Albania)
+table(dataset1$country,dataset1$voteinc_Belarus)
+table(dataset1$country,dataset1$voteinc_Bulgaria)
+table(dataset1$country,dataset1$voteinc_Czech)
+table(dataset1$country,dataset1$voteinc_Slovakia)
+table(dataset1$country,dataset1$voteinc_Estonia)
+table(dataset1$country,dataset1$voteinc_Hungary)
+table(dataset1$country,dataset1$voteinc_Latvia)
+table(dataset1$country,dataset1$voteinc_Lithuania)
+table(dataset1$country,dataset1$voteinc_Macedonia)
+table(dataset1$country,dataset1$voteinc_Poland)
+table(dataset1$country,dataset1$voteinc_Romania)
+table(dataset1$country,dataset1$voteinc_Russia)
+table(dataset1$country,dataset1$voteinc_Slovenia)
+table(dataset1$country,dataset1$voteinc_Ukraine)
+table(dataset1$country,dataset1$voteinc_Georgia)
+table(dataset1$country,dataset1$voteinc_Moldova)
+
+
+table(dataset1$V101,dataset1$voteinc_Albania)
+table(dataset1$V102,dataset1$voteinc_Belarus)
+table(dataset1$V103,dataset1$voteinc_Bulgaria)
+table(dataset1$V104,dataset1$voteinc_Czech)
+table(dataset1$V105,dataset1$voteinc_Slovakia)
+table(dataset1$V106,dataset1$voteinc_Estonia)
+table(dataset1$V107,dataset1$voteinc_Hungary)
+table(dataset1$V108,dataset1$voteinc_Latvia)
+table(dataset1$V109,dataset1$voteinc_Lithuania)
+table(dataset1$V110,dataset1$voteinc_Macedonia)
+table(dataset1$V111,dataset1$voteinc_Poland)
+table(dataset1$V112,dataset1$voteinc_Romania)
+table(dataset1$V113,dataset1$voteinc_Russia)
+table(dataset1$V114,dataset1$voteinc_Slovenia)
+table(dataset1$V115,dataset1$voteinc_Ukraine)
+table(dataset1$V116,dataset1$voteinc_Georgia)
+table(dataset1$V117,dataset1$voteinc_Moldova)
+# thingy
+
+dataset1$voteinc = (dataset1$voteinc_Albania+dataset1$voteinc_Belarus+dataset1$voteinc_Bulgaria+dataset1$voteinc_Czech+dataset1$voteinc_Slovakia+dataset1$voteinc_Hungary+
+                      dataset1$voteinc_Latvia+dataset1$voteinc_Lithuania+dataset1$voteinc_Macedonia+
+                      dataset1$voteinc_Poland+dataset1$voteinc_Romania+dataset1$voteinc_Russia+
+                      dataset1$voteinc_Slovenia+dataset1$voteinc_Ukraine+dataset1$voteinc_Georgia+
+                      dataset1$voteinc_Moldova)
+table(dataset1$voteinc)
+
+                     
+                      
+
+
+
+table(dataset1$voteinc)
+summary(dataset1$voteinc)
+table(dataset1$country,dataset1$voteinc)
+#Replace 0s to NAs and no vote/spoil. no answer
+
+dataset1$voteinc[dataset1$voteinc==0] <- NA
+dataset1$voteinc[dataset1$voteinc_Albania>=24] <- NA
+dataset1$voteinc[dataset1$voteinc_Belarus>=28] <- NA
+dataset1$voteinc[dataset1$voteinc_Bulgaria>=21] <- NA
+dataset1$voteinc[dataset1$voteinc_Czech>=31] <- NA
+dataset1$voteinc[dataset1$voteinc_Slovakia>=28] <- NA
+dataset1$voteinc[dataset1$voteinc_Estonia>=38] <- NA
+dataset1$voteinc[dataset1$voteinc_Hungary==17] <- NA
+dataset1$voteinc[dataset1$voteinc_Hungary>=19] <- NA
+dataset1$voteinc[dataset1$voteinc_Latvia==27] <- NA
+dataset1$voteinc[dataset1$voteinc_Latvia>=29] <- NA
+dataset1$voteinc[dataset1$voteinc_Lithuania==26] <- NA
+dataset1$voteinc[dataset1$voteinc_Lithuania>=28] <- NA
+dataset1$voteinc[dataset1$voteinc_Macedonia>=27] <- NA
+dataset1$voteinc[dataset1$voteinc_Poland>=39] <- NA
+dataset1$voteinc[dataset1$voteinc_Romania>=30] <- NA
+dataset1$voteinc[dataset1$voteinc_Russia==39] <- NA
+dataset1$voteinc[dataset1$voteinc_Russia>=41] <- NA
+dataset1$voteinc[dataset1$voteinc_Slovenia==22] <- NA 
+dataset1$voteinc[dataset1$voteinc_Slovenia>=24] <- NA 
+dataset1$voteinc[dataset1$voteinc_Ukraine>=25] <- NA
+dataset1$voteinc[dataset1$voteinc_Georgia>=28] <- NA
+dataset1$voteinc[dataset1$voteinc_Moldova>=17] <- NA
+
+table(dataset1$voteinc)
+table(dataset1$country,dataset1$voteinc)
 
